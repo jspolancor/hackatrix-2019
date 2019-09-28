@@ -138,9 +138,9 @@ export default {
         let positive_votes = [];
 
         if(fake) {
-          negative_votes = [comment];
+          negative_votes = [commentData];
         }else{
-          positive_votes = [comment];
+          positive_votes = [commentData];
         }
       
         // Save a new
