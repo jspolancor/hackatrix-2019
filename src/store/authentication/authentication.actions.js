@@ -7,7 +7,7 @@ export default {
   /**
    * Callback fired when user login
    */
-  login: async ({ commit, dispatch }, firebaseAuthUser) => {
+  login: async ({ commit }, firebaseAuthUser) => {
     const userFromFirebase = await new UsersDB().read(firebaseAuthUser.uid)
 
     const user = isNil(userFromFirebase)
@@ -15,7 +15,6 @@ export default {
       : userFromFirebase
 
     commit('setUser', user)
-    dispatch('products/getUserProducts', null, { root: true })
   },
 
   /**

@@ -1,0 +1,50 @@
+<template>
+  <div class="search-bar">
+    <input 
+        @keyup="getInfo"
+        v-model="url"
+        type="text"
+        name="search-bar"
+        placeholder="Ingresa la url de la noticia" />
+  </div>
+</template>
+
+<script>
+import firebase from 'firebase/app'
+import { mainApp } from '../firebase/init';
+import store from '../store';
+
+export default {
+    data: () => ({
+        url: ''  
+    }),
+    methods: {
+        getInfo() {
+            console.log(this.url);
+            firebase.firestore(mainApp)
+            .collection('news').where('url', '==', this.url)
+            .get().then((querySnapshot) => {
+                querySnapshot.forEach(function(doc) {
+                    store.commit('app/setNew', doc.data());
+                });
+            });
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+@import "@/theme/variables.scss";
+
+.search-bar {
+  width: 100%;
+
+  input {
+    width: 100%;
+    border: solid grey 1px;
+    height: 38px;
+    padding-left: 10px;
+    margin-top: 40px;
+  }
+}
+</style>

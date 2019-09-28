@@ -1,22 +1,22 @@
 <template>
   <div class="page-wrapper">
     <h1 class="home-page-title">{{ appTitle }}</h1>
-    <img alt="logo-bento" class="logo" src="@/assets/img/bento-starter.svg" />
 
-    <a
-      rel="noopener"
-      class="documentation-link"
-      target="_blank"
-      href="https://bento-starter.netlify.com/"
-      >Documentation →</a
-    >
+    <p>Evita la desinformación verificando si una noticia es falsa o real.</p>
+
+    <SearchBarVue></SearchBarVue>
+    
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import SearchBarVue from '../components/SearchBar.vue'
 
 export default {
+  components: { 
+    SearchBarVue
+  },
   head: function() {
     return {
       title: {
