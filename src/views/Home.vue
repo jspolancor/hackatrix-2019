@@ -11,7 +11,7 @@
     </router-link>
 
     <SearchBarVue v-if="isUserLoggedIn"></SearchBarVue>
-    <NewsCard></NewsCard>
+    <NewsCard v-if="news"></NewsCard>
     <CommentFormVue v-if="showComments"></CommentFormVue>
     
   </div>
