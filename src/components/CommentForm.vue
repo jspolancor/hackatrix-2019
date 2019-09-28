@@ -13,6 +13,7 @@ import VotingButtonsVue from './VotingButtons.vue'
 import firebase from 'firebase/app'
 import { mapState } from 'vuex';
 import { mainApp } from '../firebase/init';
+import store from '../store';
 
 export default {
   data: () => ({
@@ -25,30 +26,7 @@ export default {
     VotingButtonsVue
   },
   methods: {
-    vote(fake) {
-      const negativePositive = fake ? 'negative_votes' : 'positive_votes';
-
-      if(this.relatedLink) {
-        var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
-        var regex = new RegExp(expression);
-        if(! this.relatedLink.match(regex)) {
-          this.linkError = true;
-          return;
-        }
-        this.linkError = true;
-      }
-      
-      firebase.firestore(mainApp)
-      .collection('news').doc(this.news.id)
-      .update(
-        {
-          [negativePositive]: firebase.firestore.FieldValue.arrayUnion({
-            comment: this.comment,
-            datetime: firebase.firestore.Timestamp.fromDate(new Date()),
-          })
-        }
-      );
-
+    saveRelated() {
       // Save related news
       if(this.relatedLink) {
         // Check if exists
@@ -95,6 +73,62 @@ export default {
             });
 
         // Save
+      }
+    },
+    vote(fake) {
+      const negativePositive = fake ? 'negative_votes' : 'positive_votes';
+
+      if(this.relatedLink) {
+        var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+        var regex = new RegExp(expression);
+        if(! this.relatedLink.match(regex)) {
+          this.linkError = true;
+          return;
+        }
+        this.linkError = true;
+      }
+      
+      if(this.news){
+        firebase.firestore(mainApp)
+        .collection('news').doc(this.news.id)
+        .update(
+          {
+            [negativePositive]: firebase.firestore.FieldValue.arrayUnion({
+              comment: this.comment,
+              datetime: firebase.firestore.Timestamp.fromDate(new Date()),
+            })
+          }
+        );
+        this.saveRelated();
+      }else {
+        const newUrl = document.getElementById('search-bar').value;
+
+        var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+        var regex = new RegExp(expression);
+        if(! newUrl.match(regex)) {
+          alert('URL no valida');
+          return;
+        }
+        
+        // Save a new
+        const newItem = firebase.firestore(mainApp)
+            .collection('news')
+            .add({
+              negative_votes: [],
+              positive_votes: [],
+              related_news: [],
+              url: newUrl
+            });
+            newItem.then(doc => {
+              store.commit('app/setNews', {
+                  id: doc.id,
+                  negative_votes: [],
+                  positive_votes: [],
+                  related_news: [],
+                  url: newUrl
+              });
+              this.saveRelated();
+            });
       }
 
       this.voted = true;
