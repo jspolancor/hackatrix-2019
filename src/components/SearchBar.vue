@@ -26,13 +26,14 @@ export default {
             .get().then((querySnapshot) => {
                 if(querySnapshot.docs.length > 0) {
                     querySnapshot.forEach(function(doc) {
-                        store.commit('app/setNew', {
-                            id: doc.id,
-                            ...doc.data(),
-                        });
+
+                    store.commit('app/setNews', {
+                        id: doc.id,
+                        ...doc.data(),
+                    });
                     });
                 }else {
-                    store.commit('app/setNew', null);
+                    store.commit('app/setNews', null);
                 }
             });
         }

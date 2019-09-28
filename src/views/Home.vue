@@ -5,6 +5,7 @@
     <p>Evita la desinformación verificando si una noticia es falsa o real.</p>
 
     <SearchBarVue></SearchBarVue>
+    <NewsCard></NewsCard>
     <CommentFormVue v-if="showComments"></CommentFormVue>
     
   </div>
@@ -13,14 +14,17 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import SearchBarVue from '../components/SearchBar.vue'
+
 import VotingButtonsVue from '../components/VotingButtons.vue'
 import CommentFormVue from '../components/CommentForm.vue'
+import NewsCard from '../components/NewsCard.vue';
 
 export default {
   components: { 
     SearchBarVue,
     VotingButtonsVue,
-    CommentFormVue
+    CommentFormVue,
+    NewsCard
   },
   head: function() {
     return {
