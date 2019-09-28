@@ -12,4 +12,4 @@ const config = {
   appId: "1:254918565521:web:40143c6c4ba3cd351ca930"
 };
 
-firebase.initializeApp(config);
+export const mainApp = firebase.initializeApp(config);
