@@ -34,7 +34,12 @@ export default {
       ]
     }
   },
-  computed: mapState('app', ['appTitle'])
+  computed: mapState('app', ['appTitle']),
+  methods: {
+    vote(vote) {
+      console.log('fp', vote);
+    }
+  }
 }
 </script>
 
