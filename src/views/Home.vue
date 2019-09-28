@@ -4,7 +4,10 @@
 
     <p>Evita la desinformación verificando si una noticia es falsa o real.</p>
 
-    <SearchBarVue></SearchBarVue>
+    <div @vote-new="voted">
+      <SearchBarVue></SearchBarVue>
+      <VotingButtonsVue></VotingButtonsVue>
+    </div>
     
   </div>
 </template>
@@ -12,10 +15,12 @@
 <script>
 import { mapState } from 'vuex'
 import SearchBarVue from '../components/SearchBar.vue'
+import VotingButtonsVue from '../components/VotingButtons.vue'
 
 export default {
   components: { 
-    SearchBarVue
+    SearchBarVue,
+    VotingButtonsVue
   },
   head: function() {
     return {
@@ -31,7 +36,12 @@ export default {
       ]
     }
   },
-  computed: mapState('app', ['appTitle'])
+  computed: mapState('app', ['appTitle']),
+  methods: {
+    vote(vote) {
+      console.log('fp', vote);
+    }
+  }
 }
 </script>
 
