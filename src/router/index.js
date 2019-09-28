@@ -45,19 +45,6 @@ const router = new Router({
         authNotRequired: true
       }
     },
-    {
-      path: '/products',
-      name: 'products',
-      component: () =>
-        import(/* webpackChunkName: "client-chunk-products" */ '@/views/Products.vue')
-    },
-    {
-      path: '/products/:id',
-      name: 'product',
-      props: true,
-      component: () =>
-        import(/* webpackChunkName: "client-chunk-product-details" */ '@/views/Product.vue')
-    },
     { path: '*', redirect: '/home' }
   ]
 })
