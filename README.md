@@ -1,2 +1,3 @@
-# hackatrix-2019
-Hackatrix 2019
+# boilerplate
+
+(bento-starter)[https://github.com/kefranabg/bento-starter]
