@@ -127,8 +127,8 @@ export default {
                   related_news: [],
                   url: newUrl
               });
+              this.saveRelated();
             });
-        this.saveRelated();
       }
 
       this.voted = true;
