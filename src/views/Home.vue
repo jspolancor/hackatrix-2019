@@ -11,8 +11,12 @@
     </router-link>
 
     <SearchBarVue v-if="isUserLoggedIn"></SearchBarVue>
-    <NewsCard v-if="news"></NewsCard>
-    <NewsComments v-if="news"></NewsComments>
+    
+    <div class="container">
+      <NewsCard v-if="news"></NewsCard>
+      <NewsComments v-if="news"></NewsComments>
+      
+    </div>
     <CommentFormVue v-if="showComments"></CommentFormVue> 
     
   </div>
@@ -53,7 +57,7 @@ export default {
     ...mapGetters('authentication', ['isUserLoggedIn']),
     ...mapState('authentication', ['user']),
     ...mapState('app', ['networkOnLine', 'appTitle', 'appShortTitle', 'news']),
-    showComments() { return this.isUserLoggedIn }
+    showComments() { return this.isUserLoggedIn && this.news }
   },
   methods: {
     vote(vote) {
@@ -92,6 +96,14 @@ export default {
     text-decoration: none;
     width: fit-content;
     font-weight: 500;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 860px){
+      flex-direction: row;
+    }
   }
 }
 </style>

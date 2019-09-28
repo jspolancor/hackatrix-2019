@@ -1,19 +1,19 @@
 <template>
-    <div id="news-card">
+    <div id="news-card" class="news">
         <h3>  Tu noticia:  <a target="blank" :href=news.url >{{news.url}}</a> </h3>
         <div id="negative-votes">
-           Votos negativos:  {{news.negative_votes.length}}
+           <small>Votos negativos:  {{news.negative_votes.length}}</small>
         </div>
         <div id="positive-votes">
-           Votos positivos: {{news.positive_votes.length}}
+          <small> Votos positivos: {{news.positive_votes.length}}</small>
         </div>
-        <div id="related-news" v-if="relatedNews.length > 0" v-for="(rnews, url) in relatedNews" :key="url">
+        <div id="related-news" class="related-news" v-if="relatedNews.length > 0" v-for="(rnews, url) in relatedNews" :key="url">
             <h4>Noticia relacionada: <a target="blank" :href=news.url >{{rnews.url}}</a></h4>
             <div >
-             {{rnews.negative_votes.length}}
+             <small>Votos negativos:  {{rnews.negative_votes.length}}</small>
             </div>
             <div >
-             {{rnews.positive_votes.length}}
+             <small>Votos positivos:  {{rnews.positive_votes.length}}</small>
             </div>
         </div>        
     </div>
@@ -47,10 +47,12 @@ export default {
     
 }
 </script>
-<style scoped>
+<style >
 #news-card{
-    width: 50%;
-    float: left;
+    width: 50%; 
+    padding: 20px;   
+    margin-top: 20px;
+    border-right: 1px solid grey;
 }
 
 </style>
