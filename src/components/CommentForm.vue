@@ -1,6 +1,9 @@
 <template>
   <div class="comment-form">
     <textarea v-if="!voted" v-model="comment" name="comment" rows="5" placeholder="Que te parece esta noticia?"></textarea>
+    <small>Si tienes un link de una noticia relacionada a esta por favor agregalo, ayudanos a estar informados</small>
+    <input v-if="!voted" type="text" placeholder="Noticia relacionada" v-model="relatedLink">
+    <p v-if="linkError && !voted"><small style="color: red">No parece una url valida</small></p>
     <VotingButtonsVue :disabled="comment.length == 0 || voted"></VotingButtonsVue>
   </div>
 </template>
@@ -14,6 +17,8 @@ import { mainApp } from '../firebase/init';
 export default {
   data: () => ({
     comment: '',
+    relatedLink: '',
+    linkError: false,
     voted: false
   }),
   components: {
@@ -22,6 +27,16 @@ export default {
   methods: {
     vote(fake) {
       const negativePositive = fake ? 'negative_votes' : 'positive_votes';
+
+      if(this.relatedLink) {
+        var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+        var regex = new RegExp(expression);
+        if(! this.relatedLink.match(regex)) {
+          this.linkError = true;
+          return;
+        }
+        this.linkError = true;
+      }
       
       firebase.firestore(mainApp)
       .collection('news').doc(this.news.id)
@@ -33,6 +48,12 @@ export default {
           })
         }
       );
+
+      // Save related news
+      if(this.relatedLink) {
+        // Check if exists
+        // Save
+      }
 
       this.voted = true;
     },
@@ -51,10 +72,14 @@ export default {
   width: 100%;
   margin-top: 20px;
 
-  textarea {
+  textarea, input {
     width: 100%;
     border: solid grey 1px;
     padding-left: 10px;
   }
+  input {
+    height: 30px;
+  }
+
 }
 </style>
