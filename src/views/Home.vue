@@ -43,8 +43,8 @@ export default {
   computed: {
     ...mapGetters('authentication', ['isUserLoggedIn']),
     ...mapState('authentication', ['user']),
-    ...mapState('app', ['networkOnLine', 'appTitle', 'appShortTitle', 'new']),
-    showComments() { return this.isUserLoggedIn && this.new }
+    ...mapState('app', ['networkOnLine', 'appTitle', 'appShortTitle', 'news']),
+    showComments() { return this.isUserLoggedIn && this.news }
   },
   methods: {
     vote(vote) {

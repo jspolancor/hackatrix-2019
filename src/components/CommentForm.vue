@@ -24,7 +24,7 @@ export default {
       const negativePositive = fake ? 'negative_votes' : 'positive_votes';
       
       firebase.firestore(mainApp)
-      .collection('news').doc(this.new.id)
+      .collection('news').doc(this.news.id)
       .update(
         {
           [negativePositive]: firebase.firestore.FieldValue.arrayUnion({
@@ -39,7 +39,7 @@ export default {
 
   },
   computed : {
-    ...mapState('app', ['new']),
+    ...mapState('app', ['news']),
   }
 }
 </script>
