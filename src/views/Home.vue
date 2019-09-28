@@ -12,7 +12,8 @@
 
     <SearchBarVue v-if="isUserLoggedIn"></SearchBarVue>
     <NewsCard v-if="news"></NewsCard>
-    <CommentFormVue v-if="showComments"></CommentFormVue>
+    <NewsComments v-if="news"></NewsComments>
+    <CommentFormVue v-if="showComments"></CommentFormVue> 
     
   </div>
 </template>
@@ -23,14 +24,16 @@ import SearchBarVue from '../components/SearchBar.vue'
 
 import VotingButtonsVue from '../components/VotingButtons.vue'
 import CommentFormVue from '../components/CommentForm.vue'
-import NewsCard from '../components/NewsCard.vue';
+import NewsCard from '../components/NewsCard.vue'
+import NewsComments from '../components/NewsComments.vue';
 
 export default {
   components: { 
     SearchBarVue,
     VotingButtonsVue,
     CommentFormVue,
-    NewsCard
+    NewsCard,
+    NewsComments
   },
   head: function() {
     return {
