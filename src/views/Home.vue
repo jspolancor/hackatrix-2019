@@ -5,6 +5,7 @@
     <p>Evita la desinformación verificando si una noticia es falsa o real.</p>
 
     <SearchBarVue></SearchBarVue>
+    <NewsCard></NewsCard>
     
   </div>
 </template>
@@ -12,10 +13,12 @@
 <script>
 import { mapState } from 'vuex'
 import SearchBarVue from '../components/SearchBar.vue'
+import NewsCard from '../components/NewsCard.vue';
 
 export default {
   components: { 
-    SearchBarVue
+    SearchBarVue,
+    NewsCard
   },
   head: function() {
     return {

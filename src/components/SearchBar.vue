@@ -26,10 +26,10 @@ export default {
             .get().then((querySnapshot) => {
                 if(querySnapshot.docs.length > 0) {
                     querySnapshot.forEach(function(doc) {
-                        store.commit('app/setNew', doc.data());
+                        store.commit('app/setNews', doc.data());
                     });
                 }else {
-                    store.commit('app/setNew', null);
+                    store.commit('app/setNews', null);
                 }
             });
         }
