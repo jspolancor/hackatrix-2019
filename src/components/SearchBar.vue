@@ -23,7 +23,7 @@ export default {
         getInfo() {
             console.log(this.url);
             firebase.firestore(mainApp)
-            .collection('news').where('url', '==', this.url)
+            .collection('news').where('url', '==', this.url.trim())
             .get().then((querySnapshot) => {
                 if(querySnapshot.docs.length > 0) {
                     querySnapshot.forEach(function(doc) {
