@@ -1,7 +1,7 @@
 <template>
   <div class="search-bar">
     <input 
-        @keyup="getInfo"
+        @input="getInfo"
         v-model="url"
         type="text"
         name="search-bar"
@@ -24,9 +24,13 @@ export default {
             firebase.firestore(mainApp)
             .collection('news').where('url', '==', this.url)
             .get().then((querySnapshot) => {
-                querySnapshot.forEach(function(doc) {
-                    store.commit('app/setNew', doc.data());
-                });
+                if(querySnapshot.docs.length > 0) {
+                    querySnapshot.forEach(function(doc) {
+                        store.commit('app/setNew', doc.data());
+                    });
+                }else {
+                    store.commit('app/setNew', null);
+                }
             });
         }
     }
