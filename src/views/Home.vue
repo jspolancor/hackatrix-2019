@@ -50,7 +50,7 @@ export default {
     ...mapGetters('authentication', ['isUserLoggedIn']),
     ...mapState('authentication', ['user']),
     ...mapState('app', ['networkOnLine', 'appTitle', 'appShortTitle', 'news']),
-    showComments() { return this.isUserLoggedIn && this.news }
+    showComments() { return this.isUserLoggedIn }
   },
   methods: {
     vote(vote) {

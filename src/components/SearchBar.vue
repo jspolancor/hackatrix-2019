@@ -1,6 +1,7 @@
 <template>
   <div class="search-bar">
     <input 
+        id="search-bar"
         @input="getInfo"
         v-model="url"
         type="text"
