@@ -48,6 +48,9 @@ export default {
 }
 </script>
 <style scoped>
-
+#news-card{
+    width: 50%;
+    float: left;
+}
 
 </style>
