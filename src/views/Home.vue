@@ -4,10 +4,8 @@
 
     <p>Evita la desinformación verificando si una noticia es falsa o real.</p>
 
-    <div @vote-new="voted">
-      <SearchBarVue></SearchBarVue>
-      <VotingButtonsVue></VotingButtonsVue>
-    </div>
+    <SearchBarVue></SearchBarVue>
+    <VotingButtonsVue></VotingButtonsVue>
     
   </div>
 </template>
