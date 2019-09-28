@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>nada</h1>
+
+    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-firestore.js"></script>
+    <script>
+        console.log("uno")
+
+        // Initialize Cloud Firestore through Firebase
+        firebase.initializeApp({
+            apiKey: "AIzaSyD50QJZZNQt9CLAaBMJkxdHI2uiW_K4eio",
+            authDomain: "hackatrix-7813c.firebaseapp.com",
+            projectId: "hackatrix-7813c",
+        });
+
+        var db = firebase.firestore();
+/*
+        db.collection("news").add({
+        //db.collection("news").doc("wvM7SVGcu9232AQU9NqF").set({
+            negative_votes: [
+                {
+                    comment: "no es real",
+                    datetime: firebase.firestore.Timestamp.fromDate(new Date()),
+                },
+                {
+                    comment: "es falso",
+                    datetime: firebase.firestore.Timestamp.fromDate(new Date()),
+                },
+            ],
+            positive_votes: [
+
+            ],
+            related_news: [],
+            url: "http://www.noticiastt.com/70530/fallece-el-ceo-de-turner-global-logistics-de-corea-del-sur/"
+        })
+            .then(function () {
+                console.log("Document successfully written!");
+            })
+            .catch(function (error) {
+                console.error("Error writing document: ", error);
+            });
+*/
+
+    </script>
+</body>
+
+</html>
