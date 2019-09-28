@@ -1,7 +1,7 @@
 <template>
   <div class="voting-buttons">
-    <button ref="fake" @click="() => vote(true)" class="fake-btn">FAKE</button>
-    <button ref="real" @click="() => vote(false)" class="real-btn">REAL</button>
+    <button :disabled="this.$props.disabled" ref="fake" @click="() => vote(true)" class="fake-btn">FAKE</button>
+    <button :disabled="this.$props.disabled" ref="real" @click="() => vote(false)" class="real-btn">REAL</button>
   </div>
 </template>
 
@@ -18,6 +18,9 @@ export default {
             }
             this.$parent.vote(fake);
         }
+    },
+    props: {
+        disabled: Boolean
     }
 }
 </script>
@@ -40,8 +43,9 @@ export default {
         transform: rotate(-9deg);
     }
 
-    &--voted {
-        transform: rotate(-9deg);
+    &:disabled {
+        color: $disabled-color;
+        border: solid $disabled-color 1px;
     }
   }
 

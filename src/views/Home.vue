@@ -6,18 +6,24 @@
 
     <SearchBarVue></SearchBarVue>
     <NewsCard></NewsCard>
+    <CommentFormVue v-if="showComments"></CommentFormVue>
     
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import SearchBarVue from '../components/SearchBar.vue'
+
+import VotingButtonsVue from '../components/VotingButtons.vue'
+import CommentFormVue from '../components/CommentForm.vue'
 import NewsCard from '../components/NewsCard.vue';
 
 export default {
   components: { 
     SearchBarVue,
+    VotingButtonsVue,
+    CommentFormVue,
     NewsCard
   },
   head: function() {
@@ -34,7 +40,12 @@ export default {
       ]
     }
   },
-  computed: mapState('app', ['appTitle', 'news']),
+  computed: {
+    ...mapGetters('authentication', ['isUserLoggedIn']),
+    ...mapState('authentication', ['user']),
+    ...mapState('app', ['networkOnLine', 'appTitle', 'appShortTitle', 'news']),
+    showComments() { return this.isUserLoggedIn && this.news }
+  },
   methods: {
     vote(vote) {
       console.log('fp', vote);
