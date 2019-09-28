@@ -5,7 +5,7 @@
     <p>Evita la desinformación verificando si una noticia es falsa o real.</p>
 
     <SearchBarVue></SearchBarVue>
-    <NewsCard></NewsCard>
+    <NewsCard v-if="news"></NewsCard>
     <CommentFormVue v-if="showComments"></CommentFormVue>
     
   </div>
