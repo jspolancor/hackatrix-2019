@@ -5,5 +5,5 @@ export default {
   SWRegistrationForNewContent: null,
   showAddToHomeScreenModalForApple: false,
   refreshingApp: false,
-  new: false
+  new: null
 };
