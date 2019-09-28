@@ -21,7 +21,6 @@ export default {
     }),
     methods: {
         getInfo() {
-            console.log(this.url);
             firebase.firestore(mainApp)
             .collection('news').where('url', '==', this.url.trim())
             .get().then((querySnapshot) => {

@@ -12,9 +12,18 @@ export default {
             if(fake) {
                 this.$refs.fake.style.transform = 'rotate(-9deg) scale(1.1)';
                 this.$refs.real.style.transform = 'scale(0.5)';
+
+                setTimeout(() => {
+                  this.$refs.fake.style.transform = '';
+                  this.$refs.real.style.transform = '';
+                }, 500)
             }else {
                 this.$refs.real.style.transform = 'rotate(-9deg) scale(1.1)';
                 this.$refs.fake.style.transform = 'scale(0.5)';
+                setTimeout(() => {
+                  this.$refs.fake.style.transform = '';
+                  this.$refs.real.style.transform = '';
+                }, 500)
             }
             this.$parent.vote(fake);
         }
@@ -41,11 +50,6 @@ export default {
 
     &:hover {
         transform: rotate(-9deg);
-    }
-
-    &:disabled {
-        color: $disabled-color;
-        border: solid $disabled-color 1px;
     }
   }
 
