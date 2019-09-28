@@ -26,7 +26,10 @@ export default {
             .get().then((querySnapshot) => {
                 if(querySnapshot.docs.length > 0) {
                     querySnapshot.forEach(function(doc) {
-                        store.commit('app/setNew', doc.data());
+                        store.commit('app/setNew', {
+                            id: doc.id,
+                            ...doc.data(),
+                        });
                     });
                 }else {
                     store.commit('app/setNew', null);
