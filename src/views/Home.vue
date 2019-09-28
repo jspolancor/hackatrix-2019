@@ -3,8 +3,14 @@
     <h1 class="home-page-title">{{ appTitle }}</h1>
 
     <p>Evita la desinformación verificando si una noticia es falsa o real.</p>
+    
+    <p v-if="!isUserLoggedIn">Por favor logueate para continuar</p>
 
-    <SearchBarVue></SearchBarVue>
+    <router-link v-if="!isUserLoggedIn" to="/login">
+      LOGIN
+    </router-link>
+
+    <SearchBarVue v-if="isUserLoggedIn"></SearchBarVue>
     <NewsCard v-if="news"></NewsCard>
     <CommentFormVue v-if="showComments"></CommentFormVue>
     
